@@ -4,13 +4,16 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -163,6 +166,11 @@ public class MainActivity extends AppCompatActivity {
                                 List<Grid> path = pathFinder.calculateShortestPath(world, world.getGrid(begin.getX(), begin.getY()), world.getGrid(destination.getX(), destination.getY()));
                                 Destination closestDst = pathFinder.getClosestDestination(world, path);
                                 List<Destination> dsts = pathFinder.getDestinationsFromPath(world, path);
+
+                                if(closestDst.getImageIndex() != destination.getImageIndex())
+                                {
+
+
                                 pathView.setNavigationPoints(dsts, imageMap);
                                 //StringBuilder sb = new StringBuilder();
                                 //dsts.stream().forEachOrdered(sb::append);
@@ -175,8 +183,20 @@ public class MainActivity extends AppCompatActivity {
                                 TextView textView = findViewById(R.id.textView);
                                 String distanceString = "~" + path.size() * Grid.GridResolution + "m";
                                 //textView.setText(distanceString + "\n" + sb.toString());
+
+                                Rect bounds = new Rect();
+                                textView.getPaint().getTextBounds(destination.getComment(), 0, destination.getComment().length(), bounds);
+                                ViewGroup.LayoutParams params = textView.getLayoutParams();
+                                params.width =  bounds.width();
+                                params.height = bounds.height();
+
+                                textView.setLayoutParams(params);
+                                textView.invalidate();
                                 textView.setText(distanceString);
                                 textView.setBackgroundResource(R.color.colorPrimary);
+
+
+                                }
 
                             } else {
                                 //Toast.makeText(this, "You have reached your destination.", Toast.LENGTH_LONG).show();
@@ -217,5 +237,16 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    public void helpImageClicked(View view)
+    {
+        ImageView imgview = findViewById(R.id.helpImageView);
+
+        if(imgview.getVisibility() == View.INVISIBLE)
+            imgview.setVisibility(View.VISIBLE);
+
+        else
+            imgview.setVisibility(View.INVISIBLE);
     }
 }
