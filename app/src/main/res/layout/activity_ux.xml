@@ -18,8 +18,10 @@
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp" />
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/floatingActionButton"
@@ -31,8 +33,10 @@
             android:layout_marginBottom="18dp"
             android:clickable="true"
             android:focusable="true"
+            android:visibility="visible"
             app:backgroundTint="@color/colorPrimary"
-            app:srcCompat="@android:drawable/ic_menu_preferences" />
+            android:onClick="helpImageClicked"
+            app:srcCompat="@android:drawable/ic_menu_help" />
 
         <TextView
             android:id="@+id/textView"
@@ -63,15 +67,15 @@
         </nl.carlodvm.androidapp.View.PathView>
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="280dp"
-            android:layout_height="205dp"
-            android:layout_alignParentEnd="true"
+            android:id="@+id/helpImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="49dp"
-            android:layout_marginBottom="63dp"
-            android:visibility="visible"
-            app:srcCompat="@drawable/fitscan" />
+            android:layout_marginStart="0dp"
+            android:layout_marginBottom="0dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/helpimg" />
 
     </RelativeLayout>
 

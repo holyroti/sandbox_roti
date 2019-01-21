@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -236,5 +237,16 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    public void helpImageClicked(View view)
+    {
+        ImageView imgview = findViewById(R.id.helpImageView);
+
+        if(imgview.getVisibility() == View.INVISIBLE)
+            imgview.setVisibility(View.VISIBLE);
+
+        else
+            imgview.setVisibility(View.INVISIBLE);
     }
 }
